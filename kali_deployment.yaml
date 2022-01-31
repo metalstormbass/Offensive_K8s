@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kali-deployment
+  labels:
+    app: kali
+spec:
+  selector:
+    matchLabels:
+      app: kali
+  template:
+    metadata:
+      labels:
+        app: kali
+    spec:
+      containers:
+      - image: michaelbraunbass/offensive_k8s:latest
+        imagePullPolicy: Always
+        name: kali-linux
+        ports:
+        - containerPort: 8181
+          name: port-8181
+        - containerPort: 1337
+          name: port-1337 
+        - containerPort: 40000
+          name: port-40000
+        - containerPort: 3002
+          name: port-3002
+        - containerPort: 9988
+          name: port-9988
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kali-service
+  labels:
+    app: kali
+spec:
+  ports:
+   - port: 8181
+     targetPort: 8181
+     name: port-8181
+   - port: 1337
+     targetPort: 1337
+     name: port-1337
+   - port: 40000
+     targetPort: 40000
+     name: port-40000
+   - port: 3002
+     targetPort: 3002
+     name: port-3002
+   - port: 9988
+     targetPort: 9988
+     name: port-9988
+  selector:
+    app: kali
+  type: LoadBalancer
