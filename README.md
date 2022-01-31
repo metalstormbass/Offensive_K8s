@@ -1,6 +1,6 @@
 # Offensive_K8s
 
-The purpose of this project is to have a customized version of Kali that can run in Docker. 
+The purpose of this project is to have a customized version of Kali that can run in Docker or Kubernetes. Intended as a simple way of standing up Red Team infrastructure.
 
 ## Docker
 You can run the container locally, by either building it from the Docker file or pulling from my Docker Hub.
